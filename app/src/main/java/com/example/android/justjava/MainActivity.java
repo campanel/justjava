@@ -1,20 +1,21 @@
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 2;
+    int quantity = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the increment button is clicked.
      */
     public void increment(View view){
+        if(quantity == 100){
+            Toast.makeText(this, "Cara isso é muito café!!! Mais tarde vc pega mais...", Toast.LENGTH_SHORT).show();
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
@@ -34,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the decrement button is clicked.
      */
     public void decrement(View view){
+        if(quantity == 1){
+            Toast.makeText(this, "Como vc vai viver com café negativo???", Toast.LENGTH_SHORT).show();
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
@@ -54,18 +63,37 @@ public class MainActivity extends AppCompatActivity {
         boolean checkChoco = checkBoxChoco.isChecked();
         Log.v("MainActivity","Choco: " + checkChoco);
 
-        int price = calculatePrice();
+        int price = calculatePrice(checkCream, checkChoco);
         String princeMessage = createOrderSummary(name, price, checkCream, checkChoco);
         displayMessage(princeMessage);
     }
 
+    public void toastCream(View view){
+        CheckBox checkBoxCream = (CheckBox) findViewById(R.id.checkbox_cream);
+        boolean checkCream = checkBoxCream.isChecked();
+        if(checkCream){
+            Context contexto = getApplicationContext();
+            Toast.makeText(contexto, "Humm Cream!!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     /**
      * Calculates the price of the order.
-     *
+     * @param checkCream is whether or not cream topping
+     * @param checkChoco is whether or not Chocolate topping
      * @return total price
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean checkCream, boolean checkChoco) {
+        int pricePerCup = 5;
+
+        if(checkCream){
+            pricePerCup += 1;
+        }
+
+        if(checkChoco){
+            pricePerCup += 2;
+        }
+        return quantity * pricePerCup;
     }
 
     /**
