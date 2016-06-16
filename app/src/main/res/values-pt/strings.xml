@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name">Just Java</string>
+    <string name="name">Nome</string>
+    <string name="toppings">Adicionais</string>
+    <string name="cream">Chantily</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">quantidade</string>
+    <string name="order_summary">Resumo do pedido</string>
+    <string name="order">pedido</string>
+    <string name="order_summary_name">Nome: <xliff:g id="name" example="Ana">%s</xliff:g> </string>
+    <string name="thank_you">Obrigado</string>
+</resources>
