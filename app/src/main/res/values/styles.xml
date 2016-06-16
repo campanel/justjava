@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#00796B</item>
-        <item name="colorAccent">#FF5252</item>
+        <item name="colorPrimary">#9C27B0</item>
+        <item name="colorPrimaryDark">#4527A0</item>
+        <item name="colorAccent">#00BFA5</item>
     </style>
 
     <style name="HeaderTextStyle" parent="@android:style/TextAppearance.Medium">
