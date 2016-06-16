@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -65,7 +67,23 @@ public class MainActivity extends AppCompatActivity {
 
         int price = calculatePrice(checkCream, checkChoco);
         String princeMessage = createOrderSummary(name, price, checkCream, checkChoco);
-        displayMessage(princeMessage);
+//        displayMessage(princeMessage);
+
+
+        String subject = "Just Java Order - " + name;
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"someone@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, princeMessage);
+        //intent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+        //intent.setType("text/plain");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+
     }
 
     public void toastCream(View view){
